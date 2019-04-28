@@ -15,7 +15,7 @@ const setupListeners = () => {
 };
 
 const getToDos = () => {
-  const url = 'https://jsonplaceholder.typicode.com/todos/';
+  const url = 'https://jsonplaceholder.typicode.com/todos/?_limit=5';
   return fetch(url)
     .then(response => response.json())
     .then(toDos => generateToDoList(toDos));
