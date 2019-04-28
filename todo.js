@@ -24,8 +24,8 @@ const getToDos = () => {
 const generateToDoList = toDos => {
   const liItems = toDos.map(t => {
     const element = document.createElement('li');
-    element.appendChild(addLiChildElement(t.title));
-    element.appendChild(addLiChildElement());
+    element.innerHTML += addLiSpan(t.title);
+    element.innerHTML += addLiButton('Delete');
     const container = document.getElementById('container');
     container.appendChild(element);
     return element;
@@ -33,18 +33,14 @@ const generateToDoList = toDos => {
   return liItems;
 };
 
-const addLiChildElement = (spanText) => {
-  let element;
-  if (spanText) {
-    element = document.createElement('span');
-    element.contentEditable = true;
-    element.textContent = spanText;
-  } else {
-    element = document.createElement('button');
-    element.classList.add('delete');
-    element.textContent = 'Delete';
-  }
-  return element;
-};
+const addLiSpan = (spanText) => (`
+    <span contentEditable>
+        ${spanText}
+    </span>`);
+
+const addLiButton = (type) => (`
+    <button class="${type.toLowerCase()}">
+        ${type}
+    </button>`);
 
 setupListeners();
